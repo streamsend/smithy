@@ -3,10 +3,12 @@
 Smith is an Inversion of Control (IoC) container for Ruby. It's based on an
 example given in Jim Weirich's
 [Dependency Injection: Vitally Important or Totally Irrelevant][ditalk]
-talk at O'REILLY OSCON 2005. He called the example matzdi\_constructor so,
-presumably, Matz was involved as well.
+talk at O'REILLY OSCON 2005. He called the example
+[matzdi\_constructor][difile]
+so, presumably, Matz was involved as well.
 
 [ditalk]:http://onestepback.org/articles/depinj/
+[difile]:http://onestepback.org/articles/depinj/matz/matzdi_constructor_rb.html
 
 ## Installation
 
