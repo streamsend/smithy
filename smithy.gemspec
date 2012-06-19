@@ -4,8 +4,8 @@ require File.expand_path('../lib/smithy/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Chris O'Meara"]
   gem.email         = ["comeara@streamsend.com"]
-  gem.description   = %q{An Inversion of Control (IoC) container for Ruby.}
-  gem.summary       = %q{Smithy build objects for u.}
+  gem.description   = %q{A simple Dependency Injection container for Ruby.}
+  gem.summary       = %q{Smithy implements the Dependency Injection pattern using a constructor injection strategy.}
   gem.homepage      = "https://github.com/streamsend/smithy"
 
   gem.files         = `git ls-files`.split($\)
