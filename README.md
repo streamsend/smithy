@@ -26,7 +26,8 @@ Or install it yourself as:
 
 ## Usage
 
-    require "rubygems/setup"
+    require "rubygems"
+    require "bundler/setup"
 
     require "logger"
     require "smithy"
