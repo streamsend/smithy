@@ -13,7 +13,11 @@ module Smithy
 
     def register(name, component, *dependency)
       if component.respond_to?(:new)
-        @definitions[name] = [component, dependency]
+        if dependency.any?
+          @definitions[name] = [component, dependency]
+        else
+          @definitions[name] = [component, infer_dependency(component)]
+        end
       else
         @instances[name] = component
       end
@@ -25,6 +29,14 @@ module Smithy
       raise(UnsatisfiedDependencyError, name) unless component
       args = dependency.map {|service| self.instance(service) }
       @instances[name] = component.new(*args)
+    end
+
+    private
+
+    def infer_dependency(component)
+      component.instance_method(:initialize).parameters.map do |_, name|
+        name
+      end
     end
   end
 end
