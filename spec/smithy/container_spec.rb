@@ -15,7 +15,29 @@ module Smithy
         end
       end
 
-      context "name is registered to a class with dependencies" do
+      context "name is registered to a class with inferred dependencies" do
+        let(:dependency) { Object.new }
+        let(:component_class) do
+          Class.new do
+            attr_reader :dependency
+
+            def initialize(dependency)
+              @dependency = dependency
+            end
+          end
+        end
+
+        before do
+          subject.register(:component, component_class)
+          subject.register(:dependency, dependency)
+        end
+
+        it "infers the dependency by parameter name" do
+          subject.instance(:component).dependency.should == dependency
+        end
+      end
+
+      context "name is registered to a class with explicit dependencies" do
         let(:dependency) { Object.new }
 
         let(:component_class) do
@@ -29,8 +51,8 @@ module Smithy
           end
 
           before do
-            subject.register(:dependency, dependency)
-            subject.register(:component, component_class, :dependency)
+            subject.register(:component, component_class, :explicit_dependency)
+            subject.register(:explicit_dependency, dependency)
           end
 
           it "injects the dependent object into the constructor" do
